@@ -1,0 +1,77 @@
+import java.util.Random;
+
+public class MatrixArithmetic
+{
+    public static void main (String[] args)
+    {
+        int[][] matrix1 = genMatrix(6, 1, 10);
+        printMatrix(matrix1);
+        System.out.println();
+
+        int[][] matrix2 = genMatrix(5, 1, 10);
+        printMatrix(matrix2);
+        System.out.println();
+
+        printMatrix(addMatrix(matrix1, matrix2));
+    }
+
+    public static int[][] genMatrix(int size, int minVal, int maxVal)
+    {
+        Random rand = new Random();
+        int[][] matrix = new int[size][size];
+        
+        for (int i = 0; i < matrix.length; i++)
+        {
+            for (int j = 0; j < matrix[i].length; j++)
+            {
+                matrix[i][j] = rand.nextInt(maxVal - minVal + 1) + minVal;
+            }
+        }
+
+        return matrix;
+    }
+
+    public static int[][] addMatrix(int[][] matrix1, int[][] matrix2)
+    {
+        int[][] sumMatrix = new int[matrix1.length][matrix1.length];
+        if (matrix1.length == matrix2.length)
+        {
+            for (int i = 0; i < matrix1.length; i++)
+            {
+                for(int j = 0; j < matrix1[i].length; j++)
+                {
+                    sumMatrix[i][j] = matrix1[i][j] + matrix2[i][j];
+                }
+            }
+        }
+        return sumMatrix;
+    }
+
+    public static int[][] subtractMatrix(int[][] matrix1, int[][] matrix2)
+    {
+        int[][] diffMatrix = new int[matrix1.length][matrix1.length];
+        if (matrix1.length == matrix2.length)
+        {
+            for (int i = 0; i < matrix1.length; i++)
+            {
+                for(int j = 0; j < matrix1[i].length; j++)
+                {
+                    diffMatrix[i][j] = matrix1[i][j] + matrix2[i][j];
+                }
+            }
+        }
+        return diffMatrix;
+    }
+
+    public static void printMatrix(int[][] matrix)
+    {
+        for(int i = 0; i < matrix.length; i++)
+        {
+            for (int j = 0; j < matrix[i].length; j++)
+            {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}

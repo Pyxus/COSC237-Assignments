@@ -1,0 +1,23 @@
+public class MagicSquare
+{
+    public static void main()
+    {
+        boolean running = true;
+        int[][] magicSquare = new int[3][3];
+        int k = 1;
+
+        magicSquare[0][ magicSquare.length / 2] = k;
+        printMatrix(magicSquare);
+    }
+    public static void printMatrix(int[][] matrix)
+    {
+      for(int i = 0; i < matrix.length; i++)
+      {
+        for (int j = 0; j < matrix[i].length; j++)
+        {
+          System.out.printf("%2s ", matrix[i][j]);
+        }
+        System.out.println();
+      }
+    }
+}
