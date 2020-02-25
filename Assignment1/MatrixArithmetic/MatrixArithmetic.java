@@ -5,8 +5,8 @@ public class MatrixArithmetic
 {
   public static void main (String[] args)
   {
+    boolean run = true;
     Scanner scan = new Scanner(System.in); 
-    
     String[] menuOptions = {
       "Add 2 matrices",
       "Subtract 2 matrices",
@@ -15,99 +15,105 @@ public class MatrixArithmetic
       "Transpose matrix", 
       "Matrix trace"
     };
-    int selection = 1;
-    while(selection != 0)
+
+    do
     {
-      selection = menu("Your options are: \n----------------","Please enter your option: ", 
-                       "Not an integer! Try again! Please enter your option:", menuOptions);
+      int selection = menu(menuOptions);
       
-      int size = getInt(scan,"Enter the size  of the matrices: ", "Not an Integer! Try Again!");
-      int[][] matrix1 = genMatrix(size,1,10);
-      int[][] matrix2 = genMatrix(size,1,10);
-      
+      int size;
+      int[][] matrix1, matrix2;
       switch(selection)
       {
         case 0:
-          System.out.println("Testing complete");
-          return;
+          run = false;
+          break;
           
         case 1:
+          size = getInt(scan,"Enter the size of the square matrices: ", "Not an Integer! Try Again!");
+          matrix1 = genMatrix(size,1,10);
+          matrix2 = genMatrix(size,1,10);
+          
           System.out.println("First matrix is:");
           printMatrix(matrix1);
-          System.out.println();
+          
           System.out.println("Second matrix is:");
           printMatrix(matrix2);
-          System.out.println();
+          
           System.out.println("The resulting matrix is:");
           printMatrix(addMatrix(matrix1, matrix2));
-          System.out.println();
-          System.out.println("Command Number 1 completed. ");
-          System.out.println();
           break;
           
         case 2:
+          size = getInt(scan,"Enter the size of the square matrices: ", "Not an Integer! Try Again!");
+          matrix1 = genMatrix(size,1,10);
+          matrix2 = genMatrix(size,1,10);
+          
           System.out.println("First matrix is:");
           printMatrix(matrix1);
-          System.out.println();
+          
           System.out.println("Second matrix is:");
           printMatrix(matrix2);
-          System.out.println();
+          
           System.out.println("The resulting matrix is:");
           printMatrix(subtractMatrix(matrix1,matrix2));
-          System.out.println("Command Number 2 completed. ");
-          System.out.println();
           break;
           
         case 3:
+          size = getInt(scan,"Enter the size of the square matrices: ", "Not an Integer! Try Again!");
+          matrix1 = genMatrix(size,1,10);
+          matrix2 = genMatrix(size,1,10);
+          
           System.out.println("First matrix is:");
           printMatrix(matrix1);
-          System.out.println();
+          
           System.out.println("Second matrix is:");
           printMatrix(matrix2);
-          System.out.println();
+          
           System.out.println("The resulting matrix is:");
           printMatrix(multiplyMatrix(matrix1,matrix2));
-          System.out.println();
-          System.out.println("Command Number 3 completed. ");
-          System.out.println();
           break;
           
         case 4:
+          size = getInt(scan,"Enter the size of the square matrix: ", "Not an Integer! Try Again!");
+          matrix1 = genMatrix(size,1,10);
+          int constant = getInt(scan, "Enter the multiplication constant", "Not an Integer! Try Again!");
+          
           System.out.println("The matrix is:");
           printMatrix(matrix1);
-          System.out.println();
-          int constant = getInt(scan, "Enter the multiplication constant", "Not an Integer! Try Again!");
+          
           System.out.println("The original matrix multiplied by " + constant + " is:");
           printMatrix(multiplyMatrix(matrix1,constant));
-          System.out.println();
-          System.out.println("Command Number 4 completed. ");
-          System.out.println();
           break;
           
         case 5:
+          size = getInt(scan,"Enter the size of the square matrix: ", "Not an Integer! Try Again!");
+          matrix1 = genMatrix(size,1,10);
+          
           System.out.println("The matrix is:");
           printMatrix(matrix1);
-          System.out.println();
+          
           System.out.println("The transposed matrix is:");
           printMatrix(transposeMatrix(matrix1));
-          System.out.println();
-          System.out.println("Command Number 5 completed. ");
-          System.out.println();
           break;
           
         case 6:
+          size = getInt(scan,"Enter the size of the square matrix: ", "Not an Integer! Try Again!");
+          matrix1 = genMatrix(size,1,10);
+          
           System.out.println("The matrix is:");
           printMatrix(matrix1);
-          System.out.println();
-          System.out.println("The trace for this matrix is:");
+          
+          System.out.print("The trace for this matrix is: ");
           System.out.println(traceMatrix(matrix1));
-          System.out.println();
-          System.out.println("Command Number 6 completed. ");
-          System.out.println();
           break;
       }
-      
-    }
+      if (selection != 0)
+      {
+        System.out.printf("%64s\n" ,"Command Number " + selection + " completed. ");
+        System.out.println();
+      }
+    } while (run);
+    System.out.println("Testing complete");
   }
   
   public static int[][] genMatrix(int size, int minVal, int maxVal)
@@ -164,7 +170,7 @@ public class MatrixArithmetic
     {
       for (int j = 0; j < matrix[i].length; j++)
       {
-        System.out.printf("%2s ", matrix[i][j]);
+        System.out.printf("%5d", matrix[i][j]);
       }
       System.out.println();
     }
@@ -226,25 +232,26 @@ public class MatrixArithmetic
     return newMatrix;
   }
   
-  public static int menu(String headerMsg, String promptMsg, String invalidMsg, String[] options)
+  public static int menu(String[] options)
   {
     int selection;
     boolean validOption = false;
     Scanner scan = new Scanner(System.in);
     do
     {
-      System.out.println(headerMsg);
-      for (int i = 0; i < options.length; i++)
-        System.out.println((i + 1) + ") " + options[i]);
-      System.out.println("0) EXIT");
+      System.out.println("Your options are:");
+      System.out.println("-----------------");
       
-      selection = getInt(scan, promptMsg, invalidMsg);
+      for (int i = 0; i < options.length; i++)
+        System.out.printf("\t%s\n", (i + 1) + ") " + options[i]);
+      System.out.printf("\t%s\n", "0) EXIT");
+      
+      selection = getInt(scan, "Please enter your option: ", "Not an integer! Try again! Please enter your option:");
       if (selection > -1 && selection <= options.length)
         validOption = true;
       else
-      {
         System.out.println();
-      }
+      
     } while(!validOption);
     
     return selection;

@@ -1,23 +1,20 @@
 public class MagicSquare
 {
-    public static void main()
-    {
-        boolean running = true;
-        int[][] magicSquare = new int[3][3];
-        int k = 1;
+  public static void main(String[] args)
+  {
 
-        magicSquare[0][ magicSquare.length / 2] = k;
-        printMatrix(magicSquare);
-    }
-    public static void printMatrix(int[][] matrix)
+  }
+  
+  public static int[][] genMagicSquare(int size)
+  {
+    int[][] magicSquare = new int[size][size];
+    int i = size / 2;
+    int j = size - 1;
+    for (int k = 1; k <= size * size; k++)
     {
-      for(int i = 0; i < matrix.length; i++)
-      {
-        for (int j = 0; j < matrix[i].length; j++)
-        {
-          System.out.printf("%2s ", matrix[i][j]);
-        }
-        System.out.println();
-      }
+      
     }
+    
+    return magicSquare;
+  }
 }
