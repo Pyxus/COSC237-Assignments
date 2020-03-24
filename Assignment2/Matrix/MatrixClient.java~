@@ -21,7 +21,7 @@ public class MatrixClient
     
     do
     {
-      size = getInt("Enter the size of the square matrix: ", "INPUT ERROR!!! Invalid size. Positive and <= 20.");
+      size = getInt("Enter the sie of the square matrix: ", "INPUT ERROR!!! Invalid size. Positive and <= 20.");
       if (size > 0 && size <= 20)
       {
         validSize = true;
@@ -124,9 +124,9 @@ public class MatrixClient
           System.out.println("Testing for equality. Should be equal!!");
           System.out.printf("The matricies are %s", mat1.equals(copyMat) ? "equal!!" : "not equal!!");
           break;
-          
+         
         case 8:
-          mat1.init(1, 10);
+                    mat1.init(1, 10);
           mat2.init(1, 10);
           System.out.println("First Matrix is: ");
           mat1.print();
@@ -142,8 +142,7 @@ public class MatrixClient
           System.out.println("Testing completed.");
           break;
       }
-      if (run)
-        System.out.printf("\nCommand number %d completed\n\n", commandCount);
+      System.out.printf("\nCommand number %d completed\n\n", commandCount);
     }
   }
   public static int menu(String[] options)
